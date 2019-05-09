@@ -1,0 +1,76 @@
+<div class="container-fluid outerdiv" ng-app="myApp" ng-controller="bookController">
+
+<div id="main-info" class="col-md-8">
+
+      <input type="text" placeholder="Search"/>
+<button type="button">Get Results!</button>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>First Published</th>
+  </tr>
+  <!-- Build your table here -->
+  <div ng-if="!details">
+        Loading results...
+      </div>
+
+      <div ng-if="details.Response==='True'">
+        <img ng-src="{{ details.Cover=='N/A' ? 'http://placehold.it/150x220&text=N/A' : details.Book }}" class="thumbnail animated flip book-cover">
+
+        <span class="span-outer">
+          <a href="http://amazon.com/title/{{ details.imdbID }}" target="_blank">{{ details.Title }}</a>
+        </span>, {{ details.Year }}
+
+        <p><strong>Released on:</strong> {{ details.Released }} ({{ details.Runtime }})</p>
+
+        <p>{{ details.Plot }}</p>
+
+        <p class="outer-p">
+          <div class="inner-p">
+            <span class="label label-primary">Authors :</span> {{ details.Authors }}
+          </div>
+          <div class="inner-p">
+            <span class="label label-primary">Titles :</span> {{ details.Titles }}
+          </div>
+          <div class="inner-p">
+            <span class="label label-primary">First Pulished :</span> {{ details.FirstPublished }}
+          </div>
+        </p>
+
+        <p class="outer-p-2">Book Ratings:
+          <br>
+          <strong> Amazon Book Rating</strong>: <span class="label label-success">{{ details.amazonRating }}</span>
+          <br>
+          <strong>Good Read Book Ratings </strong>: <span class="label label-success">{{ details.goodreadsRating }}</span>
+        </p>
+
+      
+      </div>
+
+      <div ng-if="details.Response==='False'">
+        No results found.
+      </div>
+    </div>
+
+    <div id="related-results" class="col-md-4 animated bounce related-results">
+      <div ng-if="related.Response!=='False'">
+        Related Results:
+        <hr>
+        <ul class="rel-results">
+          <li ng-repeat="book in related.Search">
+            <a href="#" id="{{ $index + 1 }}" ng-click="update(book)">{{ book.Title }}</a>, {{ book.Year }}
+          </li>
+        </ul>
+      </div>
+    </div>
+</div>
+
+<!-- END -->    
+
+
+</table>
+
+<body>
+</html>
+

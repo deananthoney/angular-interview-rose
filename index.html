@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Books | By Dean Rose</title>
+        <script src="../node_modules/angular2/bundles/angular2-polyfills.js"></script>
+        <script src="../node_modules/systemjs/dist/system.src.js"></script>
+        <script src="../node_modules/rxjs/bundles/Rx.js"></script>
+        <script src="../node_modules/angular2/bundles/angular2.dev.js"></script>
+        <script src="app/app.js"></script>
+        <link rel="stylesheet" href="styles.css">
+        <script>
+            System.config({
+                packages: {'app': {defaultExtension: 'js'}}
+            });
+            System.import('app/app.component');
+        </script>
+    </head>
+    <body>
+        <my-app>Loading...</my-app>
+    </body>
+</html>
